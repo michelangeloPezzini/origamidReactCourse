@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+
+    function Button() {
+      const [total, setTotal] = React.useState(0);
+      return <button onClick={() => setTotal(total + 1)}>Adicionar {total}</button>
+    }
+
+    const Compras = () => {
+      const [count, setCount] = React.useState(0)
+
+      function countButton() {
+        setCount(count + 1)
+      }
+      return (
+        <div>
+          <button onClick={countButton}>Comprar {count}</button>
+          <p>Total: {count}</p>
+          <p>Preço: {count * 15}</p>
+        </div>
+      )
+    }
+
+
+
+    const Produtos = () => {
+      const produto1 = "camisa"
+      const produto2 = "bermuda"
+
+      function handleClick(event) {
+        console.log("Comprou: " + event.target.innerText)
+      }
+
+      return <div>
+        <button onClick={handleClick}>{produto1}</button>
+        <button onClick={handleClick}>{produto2}</button>
+      </div>
+    }
+
+    function MyApp() {
+      return <div>
+        <h1>Testando react</h1>
+        <Produtos />
+        <Button />
+        <Compras />
+      </div >;
+    }
+
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(<MyApp />);
+
+  </script>
+  <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+</body>
+
+</html>
